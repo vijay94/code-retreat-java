@@ -1,6 +1,6 @@
-package uk.tw.energy.generator;
+package uk.tw.offboarding.generator;
 
-public class ElectricityReadingsGenerator {
+public class TestDataGenerator {
 
 //    public List<ElectricityReading> generate(int number) {
 //        List<ElectricityReading> readings = new ArrayList<>();

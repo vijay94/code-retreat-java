@@ -1,4 +1,4 @@
-package uk.tw.energy;
+package uk.tw.offboarding;
 
 import org.springframework.context.annotation.Configuration;
 
