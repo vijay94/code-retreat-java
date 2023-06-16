@@ -2,10 +2,7 @@ package uk.tw.offboarding;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import uk.tw.offboarding.domain.Employee;
-import uk.tw.offboarding.domain.Grade;
-import uk.tw.offboarding.domain.Office;
-import uk.tw.offboarding.domain.Role;
+import uk.tw.offboarding.domain.*;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -17,11 +14,16 @@ import java.util.List;
 public class SeedingApplicationDataConfiguration {
 
     @Bean
-    public List<Employee> getEmployees() throws Exception {
+    public List<Employee> getEmployees() {
         List<Employee> employees = new ArrayList<>();
         int index = 0;
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        Date date = sdf.parse("2018-12-01");
+        Date date;
+        try {
+            date = sdf.parse("2018-12-01");
+        } catch (Exception e) {
+            date = new Date();
+        }
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         for (Office office: Office.values()) {
@@ -40,5 +42,32 @@ public class SeedingApplicationDataConfiguration {
             }
         }
         return employees;
+    }
+
+    @Bean
+    public List<Termination> getResignations() {
+        List<Termination> terminationList = new ArrayList<>();
+        try {
+            Termination termination = Termination.builder()
+                    .ID(1)
+                    .reason("Resignation")
+                    .employee(getEmployees().get(0))
+                    .lastWorkingDate(new SimpleDateFormat("yyyy-MM-dd").parse("2019-01-01"))
+                    .status(TerminationStatus.SUBMITTED)
+                    .build();
+            terminationList.add(termination);
+
+            Termination termination1 = Termination.builder()
+                    .ID(2)
+                    .reason("Resignation")
+                    .employee(getEmployees().get(1))
+                    .lastWorkingDate(new SimpleDateFormat("yyyy-MM-dd").parse("2019-01-02"))
+                    .status(TerminationStatus.SUBMITTED)
+                    .build();
+            terminationList.add(termination1);
+        } catch (Exception e){
+
+        }
+        return terminationList;
     }
 }

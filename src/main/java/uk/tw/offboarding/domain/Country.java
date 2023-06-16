@@ -1,5 +1,8 @@
 package uk.tw.offboarding.domain;
 
+import lombok.Getter;
+
+@Getter
 public enum Country {
     UNITED_KINGDOM(1,"United Kingdom", "GBR", Status.ACTIVE),
     UNITED_STATES(2, "United States", "USA", Status.ACTIVE),

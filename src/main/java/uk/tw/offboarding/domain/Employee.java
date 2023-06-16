@@ -7,7 +7,8 @@ import java.util.Date;
 
 @Getter
 @Setter
-public class Employee {
+public class
+Employee {
     private int ID;
     private String name;
     private Role role;
