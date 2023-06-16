@@ -33,7 +33,7 @@ public class SeedingApplicationDataConfiguration {
                     employee.setName("Employee "+index);
                     employee.setOffice(office);
                     employee.setRole(role);
-                    cal.add(Calendar.DAY_OF_MONTH, index);
+                    cal.add(Calendar.DAY_OF_MONTH, 1);
                     employee.setHireDate(cal.getTime());
                     employees.add(employee);
                 }
