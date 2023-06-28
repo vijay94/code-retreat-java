@@ -2,11 +2,13 @@ package uk.tw.offboarding.domain;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Date;
 
 @Getter
 @Builder
+@Setter
 public class EmployeeExitChecklistItem {
     private int terminationID;
     private ExitChecklistItem exitChecklistItem;

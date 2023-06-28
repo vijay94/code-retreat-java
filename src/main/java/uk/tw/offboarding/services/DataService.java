@@ -9,6 +9,7 @@ import uk.tw.offboarding.request.WorkingDayUpdateRequest;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -72,5 +73,16 @@ public class DataService {
                     .build());
         });
         termination.setExitChecklist(employeeExitChecklistItems);
+    }
+
+    public void checkOffCheckListItem(int terminationId, String checkListItem) throws Exception {
+        Termination termination = getTermination(terminationId);
+        List<EmployeeExitChecklistItem> items = termination.getExitChecklist().stream().filter(employeeExitChecklistItem -> employeeExitChecklistItem.getExitChecklistItem().equals(ExitChecklistItem.valueOf(checkListItem))).toList();
+        if (items.size() == 0) {
+            throw new Exception("EmployeeExitChecklistItem not found");
+        }
+        EmployeeExitChecklistItem employeeExitChecklistItem = items.get(0);
+        employeeExitChecklistItem.setCompleted(true);
+        employeeExitChecklistItem.setCompletedOn(new Date());
     }
 }

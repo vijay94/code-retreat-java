@@ -10,13 +10,13 @@ import uk.tw.offboarding.services.DataService;
 
 @RestController
 @RequestMapping("/resignation")
+@CrossOrigin(origins = "*")
 public class ResignationController {
 
     @Autowired
     DataService dataService;
 
 
-    @CrossOrigin(origins = "http://localhost:8081")
     @GetMapping("/data")
     public ResponseEntity getData(){
         return ResponseEntity.ok(dataService.getEmployees());
@@ -37,6 +37,12 @@ public class ResignationController {
     @PutMapping("/{terminationId}/accept")
     public ResponseEntity acceptResignation(@RequestBody AcceptResignationRequest acceptResignationRequest, @PathVariable() int terminationId) throws Exception {
         dataService.acceptTermination(terminationId, acceptResignationRequest);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+
+    @PutMapping("/{terminationId}/{checkListItem}")
+    public ResponseEntity checkOffCheckListItem(@PathVariable() int terminationId, @PathVariable() String checkListItem) throws Exception {
+        dataService.checkOffCheckListItem(terminationId, checkListItem);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }

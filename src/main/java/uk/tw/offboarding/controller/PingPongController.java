@@ -9,7 +9,6 @@ import uk.tw.offboarding.SeedingApplicationDataConfiguration;
 @RequestMapping("/")
 public class PingPongController {
 
-    @CrossOrigin(origins = "http://localhost:8081")
     @PostMapping("/ping")
     public ResponseEntity ping(@RequestBody String message) {
         return ResponseEntity.ok(message);
